@@ -1,8 +1,8 @@
 i.icon {
   font-size: 2em;
 }
-.container.segment {
-  margin-top: 7em;
+.container .mt-2 {
+  margin-top: 2.5em !important;
 }
 #delete {
   display: inline;
