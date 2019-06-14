@@ -2,11 +2,13 @@ const express = require("express"),
   app = express(),
   port = 3000,
   bodyParser = require("body-parser"),
-  mongoose = require("mongoose");
+  mongoose = require("mongoose"),
+  methodOverride = require("method-override");
 
 // App Configuration
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 
 // Mongoose Setup, Schema & Model
@@ -60,6 +62,14 @@ app.get("/blogs/:id/edit", (req, res) => {
   Blog.findById(req.params.id, (err, foundBlog) => {
     if (err) res.redirect("/blogs");
     else res.render("edit", { blog: foundBlog });
+  });
+});
+
+// Update Route
+app.put("/blogs/:id", (req, res) => {
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+    if (err) res.redirect("/");
+    else res.redirect("/blogs/" + req.params.id);
   });
 });
 
