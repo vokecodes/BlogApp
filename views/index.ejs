@@ -1,0 +1,12 @@
+<% include ./partials/header %> <% blogs.forEach((blog) => { %>
+<div>
+  <h1><%= blog.title%></h1>
+  <img src="<%= blog.image%>" alt="" />
+  <span><%= blog.created%></span>
+  <p><%= blog.body.substring(0, 100)%>...</p>
+  <a href="/blogs/<%= blog._id %>">Read More</a>
+</div>
+
+<% } ) %>
+<p>Copyright &copy; Blog App 2019</p>
+<% include ./partials/footer %>
