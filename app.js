@@ -55,4 +55,12 @@ app.get("/blogs/:id", (req, res) => {
   });
 });
 
+// Edit Route
+app.get("/blogs/:id/edit", (req, res) => {
+  Blog.findById(req.params.id, (err, foundBlog) => {
+    if (err) res.redirect("/blogs");
+    else res.render("edit", { blog: foundBlog });
+  });
+});
+
 app.listen(port, () => console.log(`Blog App is listening at port ${port}`));
