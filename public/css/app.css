@@ -4,3 +4,6 @@ i.icon {
 .container.segment {
   margin-top: 7em;
 }
+#delete {
+  display: inline;
+}
