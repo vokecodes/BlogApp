@@ -24,7 +24,7 @@ let blogScehma = new mongoose.Schema({
 });
 let Blog = mongoose.model("Blog", blogScehma);
 
-// RESTFUL Routes
+// RESTful Routes
 
 // Index Route
 app.get("/", (req, res) => {
@@ -71,6 +71,11 @@ app.put("/blogs/:id", (req, res) => {
     if (err) res.redirect("/");
     else res.redirect("/blogs/" + req.params.id);
   });
+});
+
+// Delete Route
+app.delete("/blogs/:id", (req, res) => {
+  Blog.findByIdAndRemove(req.params.id, err => res.redirect("/"));
 });
 
 app.listen(port, () => console.log(`Blog App is listening at port ${port}`));
